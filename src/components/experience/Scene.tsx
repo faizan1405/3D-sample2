@@ -123,7 +123,7 @@ export function Experience({ scrollRef }: SceneProps) {
       <pointLight position={[0, -2, 3]} intensity={1.2} color="#7fd9ff" distance={12} />
       <pointLight position={[0, 3, -3]} intensity={0.8} color="#ffb98a" distance={14} />
 
-      <Environment preset="city" environmentIntensity={0.55} />
+      {/* Environment removed: software WebGL fallback can crash on cubemap loads */}
 
       <Rig
         scrollRef={scrollRef}
