@@ -109,20 +109,19 @@ export function Experience({ scrollRef }: SceneProps) {
 
   return (
     <Canvas
-      shadows
-      dpr={[1, 2]}
+      dpr={[1, 1.5]}
       gl={{ antialias: true, alpha: false, powerPreference: "high-performance" }}
       camera={{ position: [0, 0.5, 22], fov: 38, near: 0.1, far: 100 }}
       style={{ position: "fixed", inset: 0, width: "100vw", height: "100vh" }}
     >
       <color attach="background" args={["#03060c"]} />
-      <fog attach="fog" args={["#040814", 6, 30]} />
+      <fog attach="fog" args={["#040814", 8, 35]} />
 
-      <ambientLight intensity={0.2} />
-      <directionalLight position={[5, 8, 5]} intensity={1.2} color="#ffd9b8" castShadow />
-      <directionalLight position={[-6, 2, -4]} intensity={0.7} color="#5fa8d6" />
-      <pointLight position={[0, -2, 3]} intensity={0.8} color="#7fd9ff" distance={10} />
-      <pointLight position={[0, 3, -3]} intensity={0.5} color="#ffb98a" distance={12} />
+      <ambientLight intensity={0.35} />
+      <directionalLight position={[5, 8, 5]} intensity={1.4} color="#ffd9b8" />
+      <directionalLight position={[-6, 2, -4]} intensity={0.9} color="#5fa8d6" />
+      <pointLight position={[0, -2, 3]} intensity={1.2} color="#7fd9ff" distance={12} />
+      <pointLight position={[0, 3, -3]} intensity={0.8} color="#ffb98a" distance={14} />
 
       <Environment preset="studio" environmentIntensity={0.6} />
 
@@ -133,12 +132,12 @@ export function Experience({ scrollRef }: SceneProps) {
         moleculeRef={moleculeRef}
       />
 
-      <Particles count={500} radius={8} color="#7fd9ff" />
-      <Particles count={150} radius={4} color="#ffb98a" />
+      <Particles count={400} radius={8} color="#7fd9ff" />
+      <Particles count={120} radius={4} color="#ffb98a" />
 
       <EffectComposer>
-        <Bloom intensity={0.85} luminanceThreshold={0.4} luminanceSmoothing={0.3} mipmapBlur />
-        <Vignette eskil={false} offset={0.2} darkness={0.85} />
+        <Bloom intensity={0.9} luminanceThreshold={0.35} luminanceSmoothing={0.3} mipmapBlur />
+        <Vignette eskil={false} offset={0.2} darkness={0.8} />
       </EffectComposer>
     </Canvas>
   );
