@@ -59,10 +59,10 @@ export function Overlay({ scrollRef }: Props) {
         </h1>
         <p className="text-display text-xl md:text-2xl text-white/60 mt-6 italic">The Living Water Revolution</p>
         <div className="mt-12 pointer-events-auto">
-          <a href="#buy" className="inline-flex items-center gap-3 text-eyebrow text-white border border-copper/40 px-8 py-4 hover:bg-copper hover:text-black transition-all">
+          <Link to="/buy" className="inline-flex items-center gap-3 text-eyebrow text-white border border-copper/40 px-8 py-4 hover:bg-copper hover:text-black transition-all">
             <span>Buy Now</span>
-            <span className="text-copper-light group-hover:text-black">→</span>
-          </a>
+            <span className="text-copper-light">→</span>
+          </Link>
         </div>
         <ScrollHint />
       </SceneCard>
@@ -146,9 +146,9 @@ export function Overlay({ scrollRef }: Props) {
           Transform your <span className="text-copper-gradient italic">experience</span>.
         </h2>
         <div className="mt-12 pointer-events-auto flex flex-col items-center gap-4">
-          <a href="mailto:info.himalayasparsh@gmail.com" className="inline-flex items-center gap-3 text-eyebrow text-black bg-copper-gradient px-12 py-5 hover:opacity-90 transition-opacity">
+          <Link to="/buy" className="inline-flex items-center gap-3 text-eyebrow text-black bg-copper-gradient px-12 py-5 hover:opacity-90 transition-opacity">
             Buy Now
-          </a>
+          </Link>
           <p className="text-eyebrow text-white/40 mt-2">SHIPPING WORLDWIDE · CRAFTED IN INDIA</p>
         </div>
       </SceneCard>
