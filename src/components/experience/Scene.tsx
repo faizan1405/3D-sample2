@@ -134,6 +134,12 @@ export function Experience({ scrollRef }: SceneProps) {
 
       <Particles count={400} radius={8} color="#7fd9ff" />
       <Particles count={120} radius={4} color="#ffb98a" />
+
+      {/* DEBUG */}
+      <mesh position={[0, 0, 0]}>
+        <sphereGeometry args={[1.5, 32, 32]} />
+        <meshBasicMaterial color="#ff00ff" wireframe />
+      </mesh>
     </Canvas>
   );
 }
