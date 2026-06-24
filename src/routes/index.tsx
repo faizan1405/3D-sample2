@@ -1,29 +1,67 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useRef } from "react";
+import Lenis from "lenis";
+import { Experience } from "@/components/experience/Scene";
+import { Overlay } from "@/components/experience/Overlay";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Your App" },
-      { name: "description", content: "Replace this with a one-sentence description of your app." },
-      { property: "og:title", content: "Your App" },
-      { property: "og:description", content: "Replace this with a one-sentence description of your app." },
+      { title: "Himalaya Sparsh — The Living Water Revolution" },
+      { name: "description", content: "A cinematic immersive experience for Himalaya Sparsh: the magnetic living water device. Hand-finished copper, triple-magnetic core, 73+ trace minerals." },
+      { property: "og:title", content: "Himalaya Sparsh — The Living Water Revolution" },
+      { property: "og:description", content: "Step inside the molecule. A scroll-driven cinematic journey through the magnetic living water device." },
+      { property: "og:type", content: "website" },
+    ],
+    links: [
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" },
     ],
   }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
+  const scrollRef = useRef(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.4,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      wheelMultiplier: 0.9,
+    });
+    let raf = 0;
+    const loop = (time: number) => {
+      lenis.raf(time);
+      const el = containerRef.current;
+      if (el) {
+        const max = el.scrollHeight - window.innerHeight;
+        scrollRef.current = max > 0 ? Math.max(0, Math.min(1, window.scrollY / max)) : 0;
+      }
+      raf = requestAnimationFrame(loop);
+    };
+    raf = requestAnimationFrame(loop);
+    return () => {
+      cancelAnimationFrame(raf);
+      lenis.destroy();
+    };
+  }, []);
+
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div ref={containerRef} className="relative bg-[#03060c]">
+      <Experience scrollRef={scrollRef} />
+      <Overlay scrollRef={scrollRef} />
+      {/* Scroll-driving spacer: 8 viewport heights */}
+      <div style={{ height: "800vh" }} />
+      {/* Footer */}
+      <footer className="relative z-10 border-t border-copper/20 bg-[#03060c] px-8 md:px-14 py-10 flex flex-col md:flex-row justify-between gap-4 text-eyebrow text-white/40">
+        <span>© MMXXVI HIMALAYA SPARSH</span>
+        <span>INFO.HIMALAYASPARSH@GMAIL.COM</span>
+        <span>@HIMALAYASPARSH</span>
+      </footer>
     </div>
   );
 }
