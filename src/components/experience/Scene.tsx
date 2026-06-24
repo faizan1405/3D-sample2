@@ -123,7 +123,7 @@ export function Experience({ scrollRef }: SceneProps) {
       <pointLight position={[0, -2, 3]} intensity={1.2} color="#7fd9ff" distance={12} />
       <pointLight position={[0, 3, -3]} intensity={0.8} color="#ffb98a" distance={14} />
 
-      {/* Environment removed: software WebGL fallback can crash on cubemap loads */}
+      <Environment preset="studio" environmentIntensity={0.6} />
 
       <Rig
         scrollRef={scrollRef}
@@ -135,11 +135,10 @@ export function Experience({ scrollRef }: SceneProps) {
       <Particles count={400} radius={8} color="#7fd9ff" />
       <Particles count={120} radius={4} color="#ffb98a" />
 
-      {/* DEBUG */}
-      <mesh position={[0, 0, 0]}>
-        <sphereGeometry args={[1.5, 32, 32]} />
-        <meshBasicMaterial color="#ff00ff" wireframe />
-      </mesh>
+      <EffectComposer>
+        <Bloom intensity={0.9} luminanceThreshold={0.35} luminanceSmoothing={0.3} mipmapBlur />
+        <Vignette eskil={false} offset={0.2} darkness={0.85} />
+      </EffectComposer>
     </Canvas>
   );
 }
