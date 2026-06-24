@@ -1,4 +1,5 @@
 import { useEffect, useState, type MutableRefObject } from "react";
+import { Link } from "@tanstack/react-router";
 import logoUrl from "@/assets/himalaya-logo.png";
 
 const clamp01 = (v: number) => Math.max(0, Math.min(1, v));
@@ -33,21 +34,21 @@ export function Overlay({ scrollRef }: Props) {
     <div className="pointer-events-none fixed inset-0 z-10">
       {/* Top nav */}
       <header className="pointer-events-auto absolute top-0 left-0 right-0 flex items-center justify-between px-8 py-6 md:px-14">
-        <div className="flex items-center gap-3">
+        <Link to="/" className="flex items-center gap-3">
           <img src={logoUrl} alt="Himalaya Sparsh" className="h-10 w-auto opacity-95" />
-        </div>
+        </Link>
         <nav className="hidden md:flex items-center gap-10 text-eyebrow text-white/70">
-          <a href="#story" className="hover:text-copper-light transition-colors">Story</a>
-          <a href="#technology" className="hover:text-copper-light transition-colors">Technology</a>
-          <a href="#science" className="hover:text-copper-light transition-colors">Science</a>
-          <a href="#buy" className="hover:text-copper-light transition-colors">Buy</a>
+          <Link to="/story" className="hover:text-copper-light transition-colors">Story</Link>
+          <Link to="/technology" className="hover:text-copper-light transition-colors">Technology</Link>
+          <Link to="/science" className="hover:text-copper-light transition-colors">Science</Link>
+          <Link to="/buy" className="hover:text-copper-light transition-colors">Buy</Link>
         </nav>
-        <a
-          href="#buy"
+        <Link
+          to="/contact"
           className="text-eyebrow border border-copper/50 px-5 py-2.5 text-white/90 hover:bg-copper hover:text-black transition-all"
         >
-          Reserve
-        </a>
+          Contact
+        </Link>
       </header>
 
       {/* Scene 1 — Hero */}
@@ -58,10 +59,10 @@ export function Overlay({ scrollRef }: Props) {
         </h1>
         <p className="text-display text-xl md:text-2xl text-white/60 mt-6 italic">The Living Water Revolution</p>
         <div className="mt-12 pointer-events-auto">
-          <a href="#buy" className="inline-flex items-center gap-3 text-eyebrow text-white border border-copper/40 px-8 py-4 hover:bg-copper hover:text-black transition-all">
+          <Link to="/buy" className="inline-flex items-center gap-3 text-eyebrow text-white border border-copper/40 px-8 py-4 hover:bg-copper hover:text-black transition-all">
             <span>Buy Now</span>
-            <span className="text-copper-light group-hover:text-black">→</span>
-          </a>
+            <span className="text-copper-light">→</span>
+          </Link>
         </div>
         <ScrollHint />
       </SceneCard>
@@ -145,9 +146,9 @@ export function Overlay({ scrollRef }: Props) {
           Transform your <span className="text-copper-gradient italic">experience</span>.
         </h2>
         <div className="mt-12 pointer-events-auto flex flex-col items-center gap-4">
-          <a href="mailto:info.himalayasparsh@gmail.com" className="inline-flex items-center gap-3 text-eyebrow text-black bg-copper-gradient px-12 py-5 hover:opacity-90 transition-opacity">
+          <Link to="/buy" className="inline-flex items-center gap-3 text-eyebrow text-black bg-copper-gradient px-12 py-5 hover:opacity-90 transition-opacity">
             Buy Now
-          </a>
+          </Link>
           <p className="text-eyebrow text-white/40 mt-2">SHIPPING WORLDWIDE · CRAFTED IN INDIA</p>
         </div>
       </SceneCard>
