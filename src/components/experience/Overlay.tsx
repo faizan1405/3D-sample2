@@ -1,5 +1,5 @@
 import { useEffect, useState, type MutableRefObject } from "react";
-import logoAsset from "@/assets/logo.png.asset.json";
+import logoUrl from "@/assets/himalaya-logo.png";
 
 const clamp01 = (v: number) => Math.max(0, Math.min(1, v));
 const seg = (p: number, a: number, b: number) => {
