@@ -96,9 +96,7 @@ function Rig({
 
   return (
     <>
-      <Float speed={1} rotationIntensity={0.1} floatIntensity={0.2}>
-        <Device ref={deviceRef} explodeRef={explodeRef} glowRef={glowRef} />
-      </Float>
+      <Device ref={deviceRef} explodeRef={explodeRef} glowRef={glowRef} />
       <Molecules visibleRef={moleculeRef} />
     </>
   );
