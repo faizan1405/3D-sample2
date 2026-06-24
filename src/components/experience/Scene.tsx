@@ -1,7 +1,7 @@
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Environment, Float } from "@react-three/drei";
 import { EffectComposer, Bloom, Vignette, DepthOfField } from "@react-three/postprocessing";
-import { useRef, type MutableRefObject } from "react";
+import { useRef, useState, useEffect, type MutableRefObject } from "react";
 import * as THREE from "three";
 import { Device, Particles, Molecules } from "./Device";
 
@@ -152,7 +152,6 @@ function DeviceAnimated({
   return <Device ref={groupRef} explode={wrap.current.explode} glow={wrap.current.glow} />;
 }
 
-import { useState, useEffect } from "react";
 function useForceFrame() {
   const [n, setN] = useState(0);
   useEffect(() => {
