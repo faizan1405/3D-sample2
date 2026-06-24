@@ -51,7 +51,7 @@ export function Overlay({ scrollRef }: Props) {
       </header>
 
       {/* Scene 1 — Hero */}
-      <SceneCard opacity={band(p, 0, 0.12, 0.04)} align="center">
+      <SceneCard opacity={Math.max(p < 0.04 ? 1 : 0, band(p, 0, 0.12, 0.04))} align="center">
         <p className="text-eyebrow text-copper-light/80 mb-6 animate-shimmer">— EST. MMXXVI · HIMALAYA</p>
         <h1 className="text-display text-5xl md:text-8xl text-white leading-[0.95]">
           Himalaya <span className="text-copper-gradient italic">Sparsh</span>
