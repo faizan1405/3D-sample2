@@ -27,26 +27,34 @@ function Index() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.4,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      wheelMultiplier: 0.9,
-    });
     let raf = 0;
+    let lenis: Lenis | null = null;
+    // Disable smooth scrolling on touch / low-power; keep raf-driven progress reading
+    try {
+      lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+        wheelMultiplier: 0.9,
+      });
+    } catch {
+      lenis = null;
+    }
+    const update = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      scrollRef.current = max > 0 ? Math.max(0, Math.min(1, window.scrollY / max)) : 0;
+    };
     const loop = (time: number) => {
-      lenis.raf(time);
-      const el = containerRef.current;
-      if (el) {
-        const max = el.scrollHeight - window.innerHeight;
-        scrollRef.current = max > 0 ? Math.max(0, Math.min(1, window.scrollY / max)) : 0;
-      }
+      if (lenis) lenis.raf(time);
+      update();
       raf = requestAnimationFrame(loop);
     };
     raf = requestAnimationFrame(loop);
+    window.addEventListener("scroll", update, { passive: true });
     return () => {
       cancelAnimationFrame(raf);
-      lenis.destroy();
+      window.removeEventListener("scroll", update);
+      lenis?.destroy();
     };
   }, []);
 
