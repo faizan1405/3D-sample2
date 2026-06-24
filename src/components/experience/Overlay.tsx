@@ -34,7 +34,7 @@ export function Overlay({ scrollRef }: Props) {
       {/* Top nav */}
       <header className="pointer-events-auto absolute top-0 left-0 right-0 flex items-center justify-between px-8 py-6 md:px-14">
         <div className="flex items-center gap-3">
-          <img src={logoAsset.url} alt="Himalaya Sparsh" className="h-10 w-auto opacity-95" />
+          <img src={logoUrl} alt="Himalaya Sparsh" className="h-10 w-auto opacity-95" />
         </div>
         <nav className="hidden md:flex items-center gap-10 text-eyebrow text-white/70">
           <a href="#story" className="hover:text-copper-light transition-colors">Story</a>
